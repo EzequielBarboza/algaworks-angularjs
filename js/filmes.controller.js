@@ -39,7 +39,19 @@ angular.module("Filmes").controller("FilmesController", function($scope){
 		});
 	}
 
+	$scope.resetForm = function(){
+		$scope.formulario.$setPristine();
+		$scope.formulario.$setUntouched();
+	}
+
 	$scope.adicionarFilme = function(){
+
+		$scope.formulario.$setDirty();
+
+		// console.log($scope.formulario);
+		if($scope.formulario.$invalid)
+			return;
+
 		var filme = angular.copy($scope.novoFilme);
 		filme.id = Date.now();
 		$scope.filmes.push(filme);
